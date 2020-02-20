@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Background", "Service Background", "{E8032C2D-05B1-4EE6-8263-455B14CC9A49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.DataAccess", "Gap.NetFest.DataAccess\Gap.NetFest.DataAccess.csproj", "{8F49C515-CFAB-49C0-995F-37BD5C366425}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.CashDesk", "Gap.NetFest.CashDesk\Gap.NetFest.CashDesk.csproj", "{A54BC022-C2E7-46D4-9D10-9F00B357CD4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.AzureStorage", "Gap.NetFest.AzureStorage\Gap.NetFest.AzureStorage.csproj", "{AD38E21E-D659-4413-9CAE-489E8F0105D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.Core", "Gap.NetFest.Core\Gap.NetFest.Core.csproj", "{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Projects", "Common Projects", "{2DE5158D-810D-46C4-A6B2-D99D79D0EF63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{BE5A19A2-AC56-4E29-8435-D7C5D7CD3541}"
+	ProjectSection(SolutionItems) = preProject
+		Despliegue paso a paso.txt = Despliegue paso a paso.txt
+		development.yaml = development.yaml
+		Dockerfile = Dockerfile
+		Pasos Simplificados.txt = Pasos Simplificados.txt
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.ServicesBackground", "Gap.NetFest.ServicesBackground\Gap.NetFest.ServicesBackground.csproj", "{161D8967-FAF6-4B60-90A8-60B6CB6B97AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Services", "Web Services", "{20604B28-64A6-46CD-9EE0-63A8DCE6C748}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gap.NetFest.CashDeskWebServices", "Gap.NetFest.CashDeskWebServices\Gap.NetFest.CashDeskWebServices.csproj", "{55C2D6A5-574B-4D8F-9418-F6F410DECAFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F49C515-CFAB-49C0-995F-37BD5C366425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F49C515-CFAB-49C0-995F-37BD5C366425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F49C515-CFAB-49C0-995F-37BD5C366425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F49C515-CFAB-49C0-995F-37BD5C366425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54BC022-C2E7-46D4-9D10-9F00B357CD4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54BC022-C2E7-46D4-9D10-9F00B357CD4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54BC022-C2E7-46D4-9D10-9F00B357CD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54BC022-C2E7-46D4-9D10-9F00B357CD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD38E21E-D659-4413-9CAE-489E8F0105D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD38E21E-D659-4413-9CAE-489E8F0105D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD38E21E-D659-4413-9CAE-489E8F0105D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD38E21E-D659-4413-9CAE-489E8F0105D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161D8967-FAF6-4B60-90A8-60B6CB6B97AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161D8967-FAF6-4B60-90A8-60B6CB6B97AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161D8967-FAF6-4B60-90A8-60B6CB6B97AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161D8967-FAF6-4B60-90A8-60B6CB6B97AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C2D6A5-574B-4D8F-9418-F6F410DECAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C2D6A5-574B-4D8F-9418-F6F410DECAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C2D6A5-574B-4D8F-9418-F6F410DECAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C2D6A5-574B-4D8F-9418-F6F410DECAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F49C515-CFAB-49C0-995F-37BD5C366425} = {2DE5158D-810D-46C4-A6B2-D99D79D0EF63}
+		{A54BC022-C2E7-46D4-9D10-9F00B357CD4A} = {E8032C2D-05B1-4EE6-8263-455B14CC9A49}
+		{AD38E21E-D659-4413-9CAE-489E8F0105D4} = {2DE5158D-810D-46C4-A6B2-D99D79D0EF63}
+		{5BEDCB13-DEE1-45F0-9DB8-ECEB203D8AE0} = {2DE5158D-810D-46C4-A6B2-D99D79D0EF63}
+		{161D8967-FAF6-4B60-90A8-60B6CB6B97AF} = {E8032C2D-05B1-4EE6-8263-455B14CC9A49}
+		{55C2D6A5-574B-4D8F-9418-F6F410DECAFD} = {20604B28-64A6-46CD-9EE0-63A8DCE6C748}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46EF036E-72DA-470D-962B-8112FC7F7F14}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,75 @@
+-- Creación de Kubernetes y Desplieguegue
+1. Para crear el AKS se puede crear con el tutorial basico de Kubernetes:
+https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
+
+2. Instalar en su computador CLI de Azure
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest
+
+3. Ejecutar los siguientes comandos:
+	a) az aks install-cli
+	b) az aks get-credentials --resource-group netfest --name AksNetFest
+	c) az aks browse --resource-group netfest --name AksNetFest
+
+4. Si despues de ejecutar el paso b) sale el mensaje de credentials expire, puedes ejecutar az login para ingresar sus credeciales de Azure.
+
+-- Creación y verificación de la imagen que se creará y ejecutara en Kubernetes usando docker.
+
+5. Es recomendable usar docker para probar la imagen generada de nuestro Services Background, así que instale docker en su computador.
+
+6. Una vez instalado docker, se debe de registrar el docker en un Azure Container Registry con la siguinte linea de comando
+
+   Nota: Este paso es opcional, yo uso Azure Container Registry para administra con mayor eficiencia las imagenes que se ejcutaran en Kubernetes.
+
+7. Luego que realizamos este paso, creamos un docker file y dentro colocamos todo lo necesario para realizar la contenerizacion de nuestro Background Services. En el docker file 
+   de este proyecto esta la contenerizacion del CashDesk que realizara la emulación de la factuación.
+
+8. Para probar la contenerización en docker puede realizar los siguientes pasos:
+	a) Compilar toda la solución.
+	b) ejecutar el docker build: docker build . -t gap_netfest_cashdesk:1.0.0
+	c) Para listar las imagenes de docker, se debe ejecutar el comando docker images, ahi se debe encontrar la imagen de docker
+	   compilada anteriormente.
+	d) Para ver los contenedores de docker incluyendo los contenedores detenidos debe ejecutar la linea de comando docker ps -a
+	e) Para crear un contenedor en docker en base a la imagen anteriormente creada: docker run --rm gap_netfest_cashdesk:1.0.0
+	f) Para eliminar un contenedor de docker se debe de ejecutar la linea docker rm <Container name or Id>
+	g) Para eliminar todos los contenedores se debe de ejecutar la linea docker rm -f $(docker ps -qa)
+	h) Para eliminar una imagen de docker se debe de ejecuatr la linea docker rmi <Id image>
+
+9. Una vez verifique que la imagen esta bien creada, probada y sin errores de ejecucion en docker, se puede proceder a subir la imagen a Azure.
+   Para hacerlo se deben de ejecutar los siguientes pasos:
+
+   a) Podemos volver a ejecutar el paso para usar el Container Registry de Azure: docker login acrnetfest.azurecr.io -u acrnetfest -p =9WF6fCVNhxLn8qPC50pCPlh2MZkpa8G
+   b) Una vez logueado podemos se crea un tag o versionamiento para la imagen. Se debe tener en cuenta los linenamientos de versionamiento, los cuales hay muchos. Yo uso el siguiente:
+	  1.0.0 => Donde el primer digito muestra la version de cada despliegue. 
+	        => El segundo digito es alguna modificacion dentro de la version.
+			=> El tercero es si hay algun Hotfix o bug que se debe implementar.
+	  para crear este tag, se debe de ejecutar la siguiente linea: docker tag myimage:local myregistry.azurecr.io/myimage:v1 para el caso de este proyecto quedaria asi
+
+	  docker tag gap_netfest_cashdesk:1.0.0 acrnetfest.azurecr.io/gap_netfest_cashdesk:1.0.0
+
+   c) Luego de crear el tag realizamos el push a azure con el siguiente comando:
+      docker push acrnetfest.azurecr.io/gap_netfest_cashdesk:1.0.0
+
+10. Una vez que la imagen quede en el Azure container, se debe poner a funcionar en Kubernetes. Para esto debemos seguir los siguientes pasos:
+   a) Se realiza un az login para autenticarse en azure
+   b) Hacemos un set de la Suscripcion de Azure con el comando az account set --subscription <suscription id>
+		En mi caso es asi:
+
+			az account set --subscription 681998dd-3220-493d-b697-bd62f8a597cd
+
+   c) Se debe de loguear a en el Aks con la siguiente lista: az aks get-credentials --resource-group netfest --name AksNetFest
+   d) Una vez que se haga el set de la subscipción se debe crear un secreto con las credenciales requeridas para que kubernetes los use
+      y pueda poner en funcionamiento la imagen:
+
+	  kubectl create secret docker-registry secretnetfest --docker-server=acrnetfest.azurecr.io --docker-username=acrnetfest --docker-password==9WF6fCVNhxLn8qPC50pCPlh2MZkpa8G --docker-email=jquintana@growthaccelerationpartners.com
+	  
+
+   e) Crer un archivo yaml con las caracteristicas del Background Services. En este proyecto se encuentra un ejemplo.
+   f) Una vez creado el archivo yaml se debe de subir a un repositorio y con la clausula kubectl apply -f se desplega el servicio en
+	  kubernetes
+	  
+	  kubectl apply -f https://stonetfest.blob.core.windows.net/configurations/developmentServiceBackground.yaml
+	  
+
+Nota: Cuando se realiza la creación del AKS muchas veces por defecto no se ejecuta la creación del Dashboard. Para esto ejecutar la siguiente linea de codigo:
+
+	kubectl create clusterrolebinding kubernetes-dashboard -n kube-system --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard

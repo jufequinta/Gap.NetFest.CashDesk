@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gap-netfest-cashdesk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gap-netfest-cashdesk
+  template:
+    metadata:
+      labels:
+        app: gap-netfest-cashdesk
+    spec:
+      containers:
+      - name: gap-netfest-cashdesk
+        image: acrnetfest.azurecr.io/gap_netfest_cashdesk:1.0.0
+        resources:
+          requests:
+            cpu: 250m
+            memory: 300Mi
+          limits:
+            cpu: 250m
+            memory: 300Mi  
+      imagePullSecrets:
+      - name: secretnetfest  

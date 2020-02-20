@@ -1,0 +1,21 @@
+Services Background.
+
+1. Crear Imagen: docker file: docker build . -t gap_netfest_servicebackground:1.0.0
+2. Login en Azure: az login
+3. Loguear el acr: acrnetfest.azurecr.io -u acrnetfest -p =9WF6fCVNhxLn8qPC50pCPlh2MZkpa8G
+4. Create el tag para el despliegue en el aks: docker tag gap_netfest_servicebackground:1.0.0 acrnetfest.azurecr.io/gap_netfest_servicebackground:1.0.0
+5. Se sube la imagen al repositorio en el acr: docker push acrnetfest.azurecr.io/gap_netfest_servicebackground:1.0.0
+6. Ejecutar la imagen del acr: kubectl apply -f https://stonetfest.blob.core.windows.net/configurations/developmentServiceBackground.yaml
+
+
+Cash Desk.
+1. Crear Imagen: docker file: docker build . -t gap_netfest_cashdesk:1.0.0
+2. Login en Azure: az login
+3. Loguear el acr: acrnetfest.azurecr.io -u acrnetfest -p =9WF6fCVNhxLn8qPC50pCPlh2MZkpa8G
+4. Create el tag para el despliegue en el aks: docker tag gap_netfest_cashdesk:1.0.0 acrnetfest.azurecr.io/gap_netfest_cashdesk:1.0.0
+5. Se sube la imagen al repositorio en el acr: docker push acrnetfest.azurecr.io/gap_netfest_cashdesk:1.0.0
+6. Ejecutar la imagen del acr: kubectl apply -f https://stonetfest.blob.core.windows.net/configurations/development.yaml
+
+Explorar AKS:
+
+az aks browse --resource-group netfest --name AksNetFest
